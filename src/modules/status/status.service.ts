@@ -76,9 +76,10 @@ export class StatusService {
 
   /**
    * Limpa logs mais antigos que 7 dias para evitar inchaço do banco de dados.
-   * Roda todos os dias às 03:00 AM.
+   * [MITIGAÇÃO EMERGENCIAL] Cron desativado temporariamente pois estava
+   * causando travamento silencioso da API às 00h (03:00 UTC).
+   * @Cron(CronExpression.EVERY_DAY_AT_3AM)
    */
-  @Cron(CronExpression.EVERY_DAY_AT_3AM)
   async cleanup() {
     this.logger.log('Starting status logs cleanup...');
     const sevenDaysAgo = new Date();
