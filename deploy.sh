@@ -34,7 +34,7 @@ echo "Executando migrations..."
 docker compose run --rm $TARGET_SERVICE npx prisma migrate deploy
 
 echo "Subindo nova versão..."
-docker compose up -d $TARGET_SERVICE
+docker compose up -d $TARGET_SERVICE autoheal
 
 echo "Aguardando healthcheck..."
 
