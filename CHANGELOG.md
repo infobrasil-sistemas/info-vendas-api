@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.16.22](https://github.com/infobrasil-sistemas-01/info-api/compare/v1.16.21...v1.16.22) (2026-09-07)
+
+
+### Bug Fixes
+
+* add willfarrell/autoheal to resilience' ([cc8e283](https://github.com/infobrasil-sistemas-01/info-api/commit/cc8e2838868bcd9e470331f453b2f5b38811ca92))
+
 ## [1.16.21](https://github.com/infobrasil-sistemas-01/info-api/compare/v1.16.20...v1.16.21) (2026-09-04)
 
 ## [1.16.20](https://github.com/infobrasil-sistemas-01/info-api/compare/v1.16.18...v1.16.20) (2026-09-04)
