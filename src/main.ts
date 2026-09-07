@@ -8,6 +8,8 @@ import { GlobalLoggerService } from './common/logger/logger.service';
 import { ZodValidationPipe } from './common/validation/zod-validation.pipe';
 
 import * as Sentry from '@sentry/node';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // Previne que bugs internos do driver ou quedas de conexões de clientes derrubem o servidor
 const isIgnorableDriverError = (err: any): boolean => {
@@ -74,6 +76,16 @@ async function bootstrap() {
   app.useLogger(logger);
 
   app.useGlobalPipes(new ZodValidationPipe());
+
+  const packageJsonPath = path.join(process.cwd(), 'package.json');
+  const packageVersion = fs.existsSync(packageJsonPath)
+    ? JSON.parse(fs.readFileSync(packageJsonPath, 'utf8')).version
+    : '1.0.0';
+
+  app.use((req: any, res: any, next: any) => {
+    res.setHeader('X-Api-Version', packageVersion);
+    next();
+  });
 
   // Confia no primeiro proxy (Nginx) para resolver o IP real do cliente
   // via X-Forwarded-For. Necessário para o IpBlocklistService funcionar corretamente.
